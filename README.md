@@ -43,7 +43,7 @@ mamba env create -f environment.yml
 mamba activate vdsnet
 ```
 
-`mamba-ssm` compiles CUDA extensions during installation. Make sure the local CUDA toolkit is compatible with the PyTorch CUDA version. The experiments in the manuscript were run on an NVIDIA RTX 3090.
+`mamba-ssm` compiles CUDA extensions during installation. Make sure the local CUDA toolkit is compatible with the PyTorch CUDA version.
 
 ### Installing Mamba from this repository
 
