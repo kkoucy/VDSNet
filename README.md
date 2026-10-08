@@ -4,7 +4,7 @@ Official PyTorch implementation of **VDSNet**, accepted by *IEEE Transactions on
 
 Kui Jiang, Yan Luo, Junjun Jiang, Ke Gu, Nan Ma, and Xianming Liu
 
-[[arXiv preprint](https://arxiv.org/abs/2505.01224)] [[Code](https://github.com/kkoucy/RD-UIE)]
+[[arXiv preprint](https://arxiv.org/abs/2505.01224)] [[Code](https://github.com/kkoucy/VDSNet)]
 
 VDSNet addresses the mismatch between fixed sequential scanning and the sparse, uneven information distribution of underwater scenes. It combines value-driven reordering scanning, multi-granularity value guidance learning, a Mamba–Conv Mixer, and cross-feature bridges. This repository provides both the full VDSNet model and the wavelet-based lightweight VDSNet-S model.
 
