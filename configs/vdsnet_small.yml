@@ -1,0 +1,61 @@
+name: VDSNet-S
+model: VDSNetS
+seed: 100
+num_workers: 1
+
+datasets:
+  train:
+    input_dir: datasets/UIEB_LSUI/train/input
+    target_dir: datasets/UIEB_LSUI/train/target
+    crop_size: 256
+    geometric_augment: true
+    batch_size: 32
+    repeat: 10
+  val:
+    input_dir: datasets/LSUI/test/input
+    target_dir: datasets/LSUI/test/target
+
+network:
+  in_channels: 3
+  dim: 24
+  hw: 128
+  out_channels: 3
+  num_blocks: [1, 2, 2, 3]
+  kernel_shape: [7, 7, 7, 7]
+  num_dynamic_kernels: [2, 2, 3, 4]
+  num_offset_groups: [1, 1, 1, 1]
+  based_state: 4
+  num_refinements: 4
+  num_heads: [1, 2, 4]
+  value_kernel_size: 1
+  dino_model_path: pretrained_models/dinov2-base
+  dino_layers: [3, 3, 4, 5]
+
+train:
+  total_iterations: 300000
+  optimizer:
+    type: AdamW
+    lr: 3.0e-4
+    weight_decay: 1.0e-4
+    betas: [0.9, 0.999]
+  scheduler:
+    periods: [92000, 208000]
+    restart_weights: [1.0, 1.0]
+    eta_mins: [3.0e-4, 1.0e-6]
+  temperature:
+    start: 1.0
+    end: 0.1
+    decay_iterations: 150000
+  loss_weights:
+    l1: 8.0
+    ssim: 1.0
+    edge: 4.0
+    mvgl: 2.0e-3
+  gradient_clip_norm: 0.01
+  print_every: 100
+  validate_every: 50000
+  save_every: 100000
+  output_dir: experiments/VDSNet-S
+  resume: null
+  pretrained: null
+

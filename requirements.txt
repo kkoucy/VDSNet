@@ -1,0 +1,15 @@
+causal-conv1d==1.1.1
+einops==0.8.2
+lmdb==2.2.0
+mamba-ssm==1.1.1
+numpy==1.26.4
+opencv-python==4.7.0.72
+Pillow==10.4.0
+PyYAML==6.0.3
+pytorch-msssim==1.0.0
+scikit-image==0.24.0
+scipy==1.15.2
+tensorboard==2.17.0
+thop==0.1.1.post2209072238
+tqdm==4.66.5
+transformers==4.40.0
