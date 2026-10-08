@@ -27,8 +27,6 @@ VDSNet-release/
 └── requirements.txt
 ```
 
-Pretrained weights, experiment outputs, and ablation-only implementations are intentionally not included.
-
 ## Environment
 
 The supplied environment records the currently validated CUDA 11.8 stack.
