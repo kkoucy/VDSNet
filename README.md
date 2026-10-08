@@ -8,10 +8,16 @@ Kui Jiang, Yan Luo, Junjun Jiang, Ke Gu, Nan Ma, and Xianming Liu
 
 VDSNet addresses the mismatch between fixed sequential scanning and the sparse, uneven information distribution of underwater scenes. It combines value-driven reordering scanning, multi-granularity value guidance learning, a Mamba–Conv Mixer, and cross-feature bridges. This repository provides both the full VDSNet model and the wavelet-based lightweight VDSNet-S model.
 
+![Overview of the VDSNet pipeline](assets/pipeline.png)
+
+*Overview of VDSNet. The figure is extracted from Fig. 2 of the paper.*
+
 ## Repository layout
 
 ```text
 VDSNet-release/
+├── assets/
+│   └── pipeline.png
 ├── configs/
 │   ├── vdsnet_large.yml
 │   └── vdsnet_small.yml
@@ -90,7 +96,15 @@ torchrun --standalone --nproc_per_node=4 train.py \
   --config configs/vdsnet_small.yml
 ```
 
-MVGL uses a frozen local DINOv2-Base model during training only. Download a Hugging Face-compatible DINOv2-Base directory and place it at `pretrained_models/dinov2-base`, or update `dino_model_path` in the configuration. DINOv2 is excluded from inference and from saved restoration checkpoints.
+### DINOv2 guidance model
+
+MVGL uses a frozen local DINOv2-Base model during training only. The official checkpoint is available at [facebook/dinov2-base](https://huggingface.co/facebook/dinov2-base). After creating the environment, download only the files required by this implementation:
+
+```bash
+python -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='facebook/dinov2-base', local_dir='pretrained_models/dinov2-base', allow_patterns=['config.json', 'preprocessor_config.json', 'model.safetensors'])"
+```
+
+The default configurations already set `dino_model_path: pretrained_models/dinov2-base`. If the model is stored elsewhere, update that field. DINOv2 is excluded from inference and from saved restoration checkpoints. Its official source code and model zoo are available from [facebookresearch/dinov2](https://github.com/facebookresearch/dinov2).
 
 Resume training by setting `train.resume` to a saved checkpoint. To initialize only the restoration network, set `train.pretrained` instead.
 
