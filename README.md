@@ -17,6 +17,7 @@ VDSNet-release/
 │   └── vdsnet_small.yml
 ├── models/
 │   └── vdsnet.py
+├── mamba/                  # bundled Mamba source fallback
 ├── tools/
 │   └── get_flops.py
 ├── data.py
@@ -37,6 +38,16 @@ mamba activate vdsnet
 ```
 
 `mamba-ssm` compiles CUDA extensions during installation. Make sure the local CUDA toolkit is compatible with the PyTorch CUDA version. The experiments in the manuscript were run on an NVIDIA RTX 3090.
+
+### Installing Mamba from this repository
+
+The default environment installs `mamba-ssm` from PyPI. If no compatible wheel is available or that installation fails, a clean Mamba source snapshot is bundled in [`mamba/`](mamba):
+
+```bash
+MAMBA_FORCE_BUILD=TRUE pip install --no-build-isolation ./mamba
+```
+
+This command builds the selective-scan CUDA extension locally, so `nvcc`, `ninja`, and a CUDA toolkit compatible with the installed PyTorch build are required. No precompiled `.so`, object files, or machine-specific build products are stored in this repository. The bundled Mamba code retains its original Apache-2.0 license in [`mamba/LICENSE`](mamba/LICENSE).
 
 ## Data preparation
 

@@ -2,9 +2,11 @@ causal-conv1d==1.1.1
 einops==0.8.2
 lmdb==2.2.0
 mamba-ssm==1.1.1
+ninja==1.13.0
 numpy==1.26.4
 opencv-python==4.7.0.72
 Pillow==10.4.0
+packaging==24.1
 PyYAML==6.0.3
 pytorch-msssim==1.0.0
 scikit-image==0.24.0
